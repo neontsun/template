@@ -1,0 +1,54 @@
+{
+    "name": "neontsun/template",
+    "description": "Packet template",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Anton Kruglov",
+            "email": "usualtsun@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8.2",
+        "ergebnis/composer-normalize": "^2.45",
+        "phpunit/phpunit": "^12.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Neontsun\\Template\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Neontsun\\Template\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "ergebnis/composer-normalize": true
+        },
+        "bump-after-update": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": true,
+            "target-directory": "tools"
+        }
+    },
+    "scripts": {
+        "check-require": "tools/composer-require-checker/vendor/bin/composer-require-checker --config-file=config.dist.json",
+        "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --show-progress=bar --diff -vvv",
+        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse --autoload-file vendor/autoload.php --configuration phpstan.dist.neon",
+        "rector": "tools/rector/vendor/bin/rector process --config=rector.php --ansi",
+        "tests": "vendor/bin/phpunit --configuration phpunit.xml"
+    }
+}
